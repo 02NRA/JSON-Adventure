@@ -1,0 +1,9 @@
+{"items": [
+        {"name": "Health Potion", "baseValue": 5, "weight": 2},
+        {"name": "Mana Potion", "baseValue": 5, "weight": 2},
+        {"name": "Dagger", "baseValue": 1, "weight": 1},
+        {"name": "Short Sword", "baseValue": 3, "weight": 5},
+        {"name": "Long Sword", "baseValue": 4, "weight": 6},
+        {"name": "Leather Armor", "baseValue": 6, "weight": 6},
+        {"name": "Plate Armor", "baseValue": 10, "weight": 10}
+]}

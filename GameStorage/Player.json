@@ -1,0 +1,32 @@
+{
+    "name": "Player",
+    "description": "",
+    "alignment": "Neutral",
+    "species": "Human",
+    "health": {
+        "max": 10,
+        "current": 10
+    },
+    "mana": {
+        "max": 10,
+        "current": 10
+    },
+    "intelligence": {
+        "max": 1,
+        "current": 1
+    },
+    "strength": {
+        "max": 1,
+        "current": 1
+    },
+    "dexterity": {
+        "max": 1,
+        "current": 1
+    },
+    "abilities": [],
+    "statusEffects": [],
+    "actions": 
+        ["Loot", "Talk", "Rest", "Onward", "Retreat", "Investigate"]
+    ,
+    "inventory": []
+}

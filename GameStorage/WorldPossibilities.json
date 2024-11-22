@@ -1,0 +1,3 @@
+{ "materials": [ "Wood", "Stone", "Iron", "Brick", "Dirt" ],
+"temperature": [ "Sweltering", "Warm", "Mild", "Cool", "Freezing" ],
+"Aura": [ "Blessed", "Cursed", "Neutral" ]}

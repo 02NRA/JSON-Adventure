@@ -1,0 +1,34 @@
+{"NPCs": [
+    {
+        "name": "Goblin",
+        "greeting": "You die now!",
+        "health": 10,
+        "actions": {
+            "attack": {"damage": 2, "chance": 1},
+            "flee": {"chance": 5}
+        },
+        "inventory": [
+            {"item": "Club"}
+        ],
+        "abilities": []
+    },
+    {
+        "name": "Trader",
+        "greeting": "I have wares if you have coin.",
+        "health": 10,
+        "actions": {
+            "trade": {"chance": 1},
+            "flee": {"chance": 5}
+        },
+        "inventory": [
+            {"item": "Health Potion", "priceModfier": 1},
+            {"item": "Mana Potion", "priceModfier": 1},
+            {"item": "Dagger", "priceModfier": 1},
+            {"item": "Short Sword", "priceModfier": 1},
+            {"item": "Long Sword", "priceModfier": 1},
+            {"item": "Leather Armor", "priceModfier": 1},
+            {"item": "Plate Armor", "priceModfier": 1}
+        ],
+        "abilities": []
+    }
+]}
