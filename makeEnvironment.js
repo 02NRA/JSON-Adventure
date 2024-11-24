@@ -9,5 +9,5 @@ window.Wassup = function() {
   console.log(localStorage.getItem('Name'));
 }
 window.ResetGame = function() {
-  localStorage.setItem('Name', '');
+  localStorage.clear();
 }
