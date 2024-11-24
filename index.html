@@ -4,11 +4,12 @@
 <head>
     <title> JSON Adventure </title>
     <meta charset="UTF-8">
-    <script src="makeEnvironment.js" type="module"></script>
+    <script src="interface.js" type="module"></script>
 </head>
 
 <body>
-    <button onClick="HelloWorld()">Set</button>
-    <button onClick="Wassup()">Get</button>
+    <input id="playerInput" type="text" placeholder = "What's next?"></input>
+    <button onClick="playerAct()">Act</button>
+    <button onClick="Help()">Get Help</button>
     <button onClick="ResetGame()">Reset Game</button>
 </body>
