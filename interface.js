@@ -1,4 +1,4 @@
-import { getPlayerData, getHelp } from './getData.js';
+import { getPlayerData, getHelp, saveData } from './getData.js';
 import { makeEnvironment } from './makeEnvironment.js';
 
 // Get the input field
@@ -16,26 +16,34 @@ input.addEventListener("keypress", function(event) {
 
 window.playerAct = function() {
     const data = getPlayerData();
-    console.log(data);
-    localStorage.setItem('Name', data.name);
-    console.log(localStorage.getItem('Name'));
+    saveData(data, 'Player');
+    console.log('---------------');
+    saveData('Nason', 'Player', 'name');
 
-    const playerAction = document.getElementById("playerInput").value.toLowerCase();
-    console.log(playerAction);
-    if (playerAction == "") console.log("You haven't decided on a course of action yet!");
-    else if (data.actions.includes(playerAction)) console.log(`You ${playerAction}!`);
-    else console.log(`You can't ${playerAction} right now.`);
+    // const playerAction = document.getElementById("playerInput").value.toLowerCase();
+    // // console.log(playerAction);
+    // if (!playerAction) console.log("You haven't decided on a course of action yet!");
+    // else if (data.actions.includes(playerAction)) console.log(`You ${playerAction}!`);
+    // else console.log(`You can't ${playerAction} right now.`);
 }
-window.Help = function() {
+window.help = function() {
     const data = getHelp();
     console.log("You can take any of the following actions: ");
     console.log(data);
 }
-window.ResetGame = function() {
+window.resetGame = function() {
     localStorage.clear();
-    console.log(localStorage.getItem('Name'));
+    console.log(localStorage);
+    startGame();
 }
 
 window.startGame = function() {
-    console.log(localStorage.getItem('Name'))
+    //TODO: Figure out why the first data read of a session always fails; for now, I'm just faking a data read every start
+    try {
+        const data = getHelp();
+    } catch {
+
+    }
+
+    console.log(makeEnvironment());
 }
