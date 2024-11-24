@@ -1,6 +1,6 @@
-function HelloWorld () {
-    fetch('./GameStorage/Player.json')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)})
-}
+import { getPlayerData } from './getData.js';
+let localPlayerData = await getPlayerData();
+
+window.HelloWorld = function() {
+    console.log(getPlayerData());
+  }
