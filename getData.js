@@ -5,6 +5,7 @@ export function getPlayerData(){
         .then(response => response.json())
         .then(data => {
             returnData = data})
+    console.log(returnData)
     return returnData;
 }
 export function getHelp(){ 
@@ -20,7 +21,7 @@ export function getWorldData() {
     .then(response => response.json())
     .then(data => {
         returnData.NPCs = data})
-    fetch('./GameStorage/WorldPossibilities.json')
+    fetch('./GameStorage/PlacePossibilities.json')
     .then(response => response.json())
     .then(data => {
         returnData.worldPossibilities = data})
@@ -29,6 +30,30 @@ export function getWorldData() {
     .then(data => {
         returnData.items = data})
 return returnData;
+}
+
+export function loadGameData() {
+    fetch('./GameStorage/Items.json')
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('items', JSON.stringify(data))})
+    fetch('./GameStorage/NPCs.json')
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('NPCs', JSON.stringify(data))})
+    fetch('./GameStorage/PlacePossibilities.json')
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('PlacePossibilities', JSON.stringify(data))})
+    fetch('./GameStorage/Player.json')
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('Player', JSON.stringify(data))})
+    fetch('./GameStorage/Settings.json')
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('Settings', JSON.stringify(data))})
+    console.log(localStorage);
 }
 
 /**

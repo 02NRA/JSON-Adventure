@@ -1,4 +1,4 @@
-import { getPlayerData, getHelp, saveData } from './getData.js';
+import { getPlayerData, getHelp, saveData, loadGameData} from './getData.js';
 import { makeEnvironment } from './makeEnvironment.js';
 
 // Get the input field
@@ -16,15 +16,12 @@ input.addEventListener("keypress", function(event) {
 
 window.playerAct = function() {
     const data = getPlayerData();
-    saveData(data, 'Player');
-    console.log('---------------');
-    saveData('Nason', 'Player', 'name');
 
-    // const playerAction = document.getElementById("playerInput").value.toLowerCase();
-    // // console.log(playerAction);
-    // if (!playerAction) console.log("You haven't decided on a course of action yet!");
-    // else if (data.actions.includes(playerAction)) console.log(`You ${playerAction}!`);
-    // else console.log(`You can't ${playerAction} right now.`);
+    const playerAction = document.getElementById("playerInput").value.toLowerCase();
+    // console.log(playerAction);
+    if (!playerAction) console.log("You haven't decided on a course of action yet!");
+    else if (data.actions.includes(playerAction)) console.log(`You ${playerAction}!`);
+    else console.log(`You can't ${playerAction} right now.`);
 }
 window.help = function() {
     const data = getHelp();
@@ -34,7 +31,7 @@ window.help = function() {
 window.resetGame = function() {
     localStorage.clear();
     console.log(localStorage);
-    startGame();
+    console.log("The game has been reset!");
 }
 
 window.startGame = function() {
@@ -44,6 +41,17 @@ window.startGame = function() {
     } catch {
 
     }
+    console.log("The game has begun!");
+    //TODO: call makeEnvironment()
+}
+window.test = function() {
+    //test saveData()
+    // let data = getPlayerData();
+    // saveData(data, 'Player');
+    // console.log('---------------');
+    // saveData('Nason', 'Player', 'name');
+    //Success!
 
-    console.log(makeEnvironment());
+    loadGameData();
+    //Success!
 }
