@@ -20,7 +20,7 @@ window.playerAct = function() {
     const playerAction = document.getElementById("playerInput").value.toLowerCase();
     // console.log(playerAction);
     if (!playerAction) console.log("You haven't decided on a course of action yet!");
-    else if (data.actions.includes(playerAction)) console.log(`You ${playerAction}!`);
+    else if (data.includes(playerAction)) console.log(`You ${playerAction}!`);
     else console.log(`You can't ${playerAction} right now.`);
 }
 window.help = function() {
@@ -56,4 +56,8 @@ window.testHelpers = function() {
     } else {
         console.log("The game is not yet running.");
     }
+}
+window.toggleTheme = function() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
 }
