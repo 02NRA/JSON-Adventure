@@ -1,4 +1,3 @@
-import { getWorldData } from './getData.js';
+import { getData } from './handleData.js';
 export function makeEnvironment () {
-    console.log(getWorldData());
 }

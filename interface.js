@@ -1,4 +1,4 @@
-import { getPlayerData, getHelp, saveData, loadGameData} from './getData.js';
+import { loadGameData, setData, getData} from './handleData.js';
 import { makeEnvironment } from './makeEnvironment.js';
 
 // Get the input field
@@ -15,7 +15,7 @@ input.addEventListener("keypress", function(event) {
 });
 
 window.playerAct = function() {
-    const data = getPlayerData();
+    const data = getData('Player', 'actions');
 
     const playerAction = document.getElementById("playerInput").value.toLowerCase();
     // console.log(playerAction);
@@ -24,34 +24,36 @@ window.playerAct = function() {
     else console.log(`You can't ${playerAction} right now.`);
 }
 window.help = function() {
-    const data = getHelp();
     console.log("You can take any of the following actions: ");
-    console.log(data);
+    console.log(getData('Player', 'actions'));
 }
 window.resetGame = function() {
     localStorage.clear();
+    localStorage.setItem('gameState', 'stopped');
     console.log(localStorage);
     console.log("The game has been reset!");
 }
 
 window.startGame = function() {
     //TODO: Figure out why the first data read of a session always fails; for now, I'm just faking a data read every start
-    try {
-        const data = getHelp();
-    } catch {
-
-    }
+    loadGameData();
+    localStorage.setItem('gameState', 'running');
+    console.log(localStorage);
     console.log("The game has begun!");
     //TODO: call makeEnvironment()
 }
-window.test = function() {
-    //test saveData()
-    // let data = getPlayerData();
-    // saveData(data, 'Player');
-    // console.log('---------------');
-    // saveData('Nason', 'Player', 'name');
-    //Success!
-
-    loadGameData();
-    //Success!
+window.testHelpers = function() {
+    if (localStorage.getItem('gameState') == 'running') {
+        loadGameData();
+        console.log(localStorage);
+        //Success!
+    
+        setData('Nason', 'Player', 'name');
+        //Success!
+    
+        console.log(getData('Player', 'name'));
+        //Success!
+    } else {
+        console.log("The game is not yet running.");
+    }
 }
