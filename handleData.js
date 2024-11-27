@@ -32,7 +32,7 @@ export function loadGameData() {
 export function getData(dataSetTarget, attribute) {
     let data = localStorage.getItem(`${dataSetTarget}`);
     data = JSON.parse(data);
-    data = data[`${attribute}`];
+    if (attribute) data = data[`${attribute}`];
     return data;
 }
 

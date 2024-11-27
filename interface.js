@@ -15,17 +15,20 @@ input.addEventListener("keypress", function(event) {
 });
 
 window.playerAct = function() {
-    const data = getData('Player', 'actions');
+    if (localStorage.getItem('gameState') == 'running') {
+        const data = getData('Player', 'actions');
 
-    const playerAction = document.getElementById("playerInput").value.toLowerCase();
-    // console.log(playerAction);
-    if (!playerAction) console.log("You haven't decided on a course of action yet!");
-    else if (data.includes(playerAction)) console.log(`You ${playerAction}!`);
-    else console.log(`You can't ${playerAction} right now.`);
+        const playerAction = document.getElementById("playerInput").value.toLowerCase();
+        if (!playerAction) console.log("You haven't decided on a course of action yet!");
+        else if (data.includes(playerAction)) console.log(`You ${playerAction}!`);
+        else console.log(`You can't ${playerAction} right now.`);
+    }
 }
 window.help = function() {
-    console.log("You can take any of the following actions: ");
-    console.log(getData('Player', 'actions'));
+    if (localStorage.getItem('gameState') == 'running') {
+        console.log("You can take any of the following actions: ");
+        console.log(getData('Player', 'actions'));
+    }
 }
 window.resetGame = function() {
     localStorage.clear();
@@ -33,15 +36,14 @@ window.resetGame = function() {
     console.log(localStorage);
     console.log("The game has been reset!");
 }
-
 window.startGame = function() {
-    //TODO: Figure out why the first data read of a session always fails; for now, I'm just faking a data read every start
     loadGameData();
     localStorage.setItem('gameState', 'running');
     console.log(localStorage);
     console.log("The game has begun!");
-    //TODO: call makeEnvironment()
+    makeEnvironment();
 }
+
 window.testHelpers = function() {
     if (localStorage.getItem('gameState') == 'running') {
         loadGameData();
