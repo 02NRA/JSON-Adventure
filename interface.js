@@ -19,29 +19,59 @@ window.playerAct = function() {
         const data = getData('Player', 'actions');
 
         const playerAction = document.getElementById("playerInput").value.toLowerCase();
-        if (!playerAction) console.log("You haven't decided on a course of action yet!");
-        else if (data.includes(playerAction)) console.log(`You ${playerAction}!`);
-        else console.log(`You can't ${playerAction} right now.`);
+        if (!playerAction) console.warn("You haven't decided on a course of action yet!");
+        else if (data.includes(playerAction)) logEvent(`You ${playerAction}!`, 'player');
+        else console.warn(`You can't ${playerAction} right now.`);
     }
 }
 window.help = function() {
     if (localStorage.getItem('gameState') == 'running') {
-        console.log("You can take any of the following actions: ");
-        console.log(getData('Player', 'actions'));
+        logEvent("You can take any of the following actions: ", 'system');
+        logEvent(getData('Player', 'actions'));
     }
 }
 window.resetGame = function() {
+    logEvent("The game has been reset!", 'system');
     localStorage.clear();
     localStorage.setItem('gameState', 'stopped');
-    console.log(localStorage);
-    console.log("The game has been reset!");
 }
 window.startGame = function() {
     loadGameData();
     localStorage.setItem('gameState', 'running');
-    console.log(localStorage);
-    console.log("The game has begun!");
+    logEvent("The game has begun!", 'system');
     makeEnvironment();
+}
+
+window.toggleColors = function() {
+    if (getData('Settings', 'colors') == 'on') setData('off', 'Settings', 'colors');
+    else setData('on', 'Settings', 'colors');
+}
+window.toggleTheme = function() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}
+/**
+ * Console logs a message with a color based on the type of message, unless the user toggles that off.
+ * @param {string} message 
+ * @param {string} type 
+ * @returns 
+ */
+function logEvent(message, type) {
+    const colorToggle = localStorage.getItem('gameState') == 'running' ? getData('Settings', 'colors') : 'on';
+    if (colorToggle == "off" || !type) {
+        console.log(message)
+        return;
+    };
+    // FUTURE: Could break this out into a ColorConfig.json and make it adaptable
+    const colors = {
+        system: 'green',
+        player: 'blue',
+        item: 'yellow',
+        enemy: 'red',
+        npc: 'purple',
+    };
+    const color = colors[`${type}`] ?? 'white';
+    if (colorToggle == "on") console.log(`%c ${message}`, `color: ${color}`);
 }
 
 window.testHelpers = function() {
@@ -58,8 +88,4 @@ window.testHelpers = function() {
     } else {
         console.log("The game is not yet running.");
     }
-}
-window.toggleTheme = function() {
-    var element = document.body;
-    element.classList.toggle("dark-mode");
 }

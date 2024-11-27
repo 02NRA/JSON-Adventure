@@ -26,6 +26,7 @@ export function loadGameData() {
 
 /**
  * Helper function that retrieves data from objects in localStorage.
+ * 
  * @param {string} dataSetTarget
  * @param {string} attribute
  */
@@ -38,6 +39,7 @@ export function getData(dataSetTarget, attribute) {
 
 /**
  * Helper function that writes data to objects in localStorage.
+ * 
  * @param {*} newValue 
  * @param {string} dataSetTarget
  * @param {string} attribute
